@@ -15,8 +15,8 @@
 
 	<scm>
 		<connection>scm:git:git@github.com:sudr/dougs.git</connection>
-		<url>scm:git:git@github.com:tobrien/git-demo.git</url>
-		<developerConnection>scm:git:git@github.com:tobrien/git-demo.git</developerConnection>
+		<url>scm:git:git@github.com:sudr/dougs.git</url>
+		<developerConnection>scm:git:git@github.com:sudr/dougs.git</developerConnection>
 	</scm>
 
 	<dependencies>
