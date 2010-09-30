@@ -11,10 +11,11 @@ import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.reporters.StoryReporterBuilder.Format;
 import org.jbehave.core.steps.CandidateSteps;
 import org.jbehave.core.steps.InstanceStepsFactory;
+import org.junit.Test;
 
 public class ICanOperateDoor extends JUnitStory {
 
-	@org.testng.annotations.Test
+	@Test
     public void run() throws Throwable {
         super.run();
     }
