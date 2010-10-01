@@ -27,12 +27,19 @@ public class RemoteSteps {
 		this.remote = new Remote(door);
 	}
 
-	@When("I press the button")
-	public void iPressTheButton() {
+	@When("I press the button and wait $numberSeconds seconds")
+	public void iPressTheButton(int numberSeconds) throws InterruptedException {
 		remote.pressButton();
+		Thread.sleep(numberSeconds*1000*2);
 		doorState = door.isOpen();
 	}
 
+	@Then("the door is automatically closed")
+	public void theDoorIsAutomaticallyClosed() throws InterruptedException {
+		boolean expectedDoorState = false;
+		assertThat(this.doorState, equalTo(expectedDoorState));
+	}
+	
 	@Then("the door is $doorState")
 	public void theDoorIs(String doorState) {
 		boolean expectedDoorState = false;
@@ -43,5 +50,5 @@ public class RemoteSteps {
 		}
 		assertThat(this.doorState, equalTo(expectedDoorState));
 	}
-
+	
 }

@@ -1,2 +1,4 @@
 target
 test-output
+pom.xml.releaseBackup
+release.properties
