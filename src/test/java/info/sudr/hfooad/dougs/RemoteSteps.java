@@ -27,8 +27,14 @@ public class RemoteSteps {
 		this.remote = new Remote(door);
 	}
 
+	@When("I press the button")
+	public void iPressTheButton() {
+		remote.pressButton();
+		doorState = door.isOpen();
+	}
+	
 	@When("I press the button and wait $numberSeconds seconds")
-	public void iPressTheButton(int numberSeconds) throws InterruptedException {
+	public void iPressTheButtonAndWait(int numberSeconds) throws InterruptedException {
 		remote.pressButton();
 		Thread.sleep(numberSeconds*1000*2);
 		doorState = door.isOpen();

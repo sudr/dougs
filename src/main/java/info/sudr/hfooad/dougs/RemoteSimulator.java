@@ -1,6 +1,6 @@
 package info.sudr.hfooad.dougs;
 
-public class Simulator {
+public class RemoteSimulator {
 
 	public static void main(String[] args) {
 		DogDoor door = new DogDoor();
