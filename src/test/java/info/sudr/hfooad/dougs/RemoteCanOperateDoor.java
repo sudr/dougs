@@ -13,7 +13,7 @@ import org.jbehave.core.steps.CandidateSteps;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.junit.Test;
 
-public class ICanOperateDoor extends JUnitStory {
+public class RemoteCanOperateDoor extends JUnitStory {
 
 	@Test
     public void run() throws Throwable {

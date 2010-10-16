@@ -1,5 +1,8 @@
 package info.sudr.hfooad.dougs;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -8,6 +11,8 @@ public class DogDoor {
 	private int timeDelay = 5000;
 	private boolean open;
 
+	private final Collection<Bark> allowedBarks = new ArrayList<Bark>();
+	
 	public DogDoor() {
 		open = false;
 	}
@@ -45,4 +50,11 @@ public class DogDoor {
 		open = false;
 	}
 
+	public void allowBark(Bark bark) {
+		allowedBarks.add(bark);
+	}
+
+	public Collection<Bark> getAllowedBarks() {
+		return Collections.unmodifiableCollection(allowedBarks);
+	}
 }

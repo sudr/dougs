@@ -1,15 +1,15 @@
-Given that the door is closed and Rex door
-When Rex barks
+Given that the door is closed and recognizes the woof bark
+When Rex barks woof
 Then the door is opened
 
-Given that the door is open and Rex door
-When Rex barks
+Given that the door is open and recognizes the woof bark
+When Rex barks woof
 Then the door is opened
 
-Given that the door is closed and Rex door
-When Lassie barks
+Given that the door is closed and recognizes the woof bark
+When Lassie barks bow
 Then the door remains closed
 
-Given that the door is closed and Rex door with 10 sec timer
-When Rex barks
-Then the door is opened for 10 secs
+Given that the door is closed and recognizes the barks woof,roowlf
+When Rex barks roowlf
+Then the door is opened

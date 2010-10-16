@@ -3,8 +3,9 @@ package info.sudr.hfooad.dougs;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
@@ -15,74 +16,50 @@ public class BarkRecognizerSteps {
 
 	private BarkRecognizer barkRecognizer;
 	private DogDoor door;
-	private boolean doorState; 
+	private boolean doorState;
 
-	@Given("that the door is $doorState and $dogName door")
-	public void theDoorInState(String doorState, String dogName) {
-		createDoor(doorState);
-		createBarkRecognizer(dogName);
+	@Given("that the door is $doorState and recognizes the $barkSound bark")
+	public void theDoorInState(String doorState, String barkSound) {
+		createDoor(doorState, barkSound);
+		createBarkRecognizer();
 	}
 
-	@Given("that the door is $doorState and $dogName door with $timeDelayinSeconds sec timer")
-	public void theDoorInStateWithTimeDelay(String doorState, String dogName, int timeDelayInSeconds) {
-		createDoor(doorState, timeDelayInSeconds * 1000);
-		createBarkRecognizer(dogName);
+	@Given("that the door is $doorState and recognizes the barks $barkSound")
+	public void theDoorInState(String doorState, List<String> barkSounds) {
+		createDoor(doorState, barkSounds);
+		createBarkRecognizer();
 	}
 
-	@When("$dog barks")
-	public void rexBarks(String dog) {
-		Bark bark = new Bark(dog);
+	@When("$dog barks $barkSound")
+	public void rexBarks(String dog, String barkSound) {
+		Bark bark = new Bark(barkSound);
 		barkRecognizer.recognize(bark);
 		doorState = door.isOpen();
 	}
 
-	@Then("the door is $doorState for $timeInSeconds secs")
-	public void theDoorIsOpenForTime(String doorState, int timeInSeconds) {
-		final boolean expectedDoorState = convertDoorStateFlag(doorState);
-		final Timer timer = new Timer();
-		timer.schedule(new DoorTimer(this.doorState, expectedDoorState), timeInSeconds*1000);
-	}
-	
 	@Then("the door is $doorState")
 	@Alias("the door remains $doorState")
 	public void theDoorIs(String doorState) {
 		boolean expectedDoorState = convertDoorStateFlag(doorState);
 		assertThat(this.doorState, equalTo(expectedDoorState));
 	}
-	
-	private class DoorTimer extends TimerTask {
 
-		private boolean doorState;
-		private boolean expectedDoorState;
-
-		public DoorTimer(boolean doorState, boolean expectedDoorState) {
-			this.doorState = doorState;
-			this.expectedDoorState = expectedDoorState;
-		}
-		
-		@Override
-		public void run() {
-			assertThat(this.doorState, equalTo(expectedDoorState));
-			cancel();
-		}
-		
+	private void createDoor(String doorState, String barkSound) {
+		createDoor(doorState, Arrays.asList(new String[] {barkSound}));
 	}
-	
-	private void createDoor(String doorState) {
+
+	private void createDoor(String doorState, Collection<String> barkSounds) {
 		boolean open = convertDoorStateFlag(doorState);
 		door = new DogDoor(open);
+		for (String sound : barkSounds) {
+			door.allowBark(new Bark(sound));
+		}
 	}
 
-	private void createDoor(String doorState, int timeDelay) {
-		boolean open = convertDoorStateFlag(doorState);
-		door = new DogDoor(open, timeDelay);		
-	}
-	
-	private void createBarkRecognizer(String dogName) {
+	private void createBarkRecognizer() {
 		barkRecognizer = new BarkRecognizer(door);
-		barkRecognizer.addDog(dogName);
 	}
-	
+
 	private boolean convertDoorStateFlag(String doorState) {
 		boolean open = false;
 		if ("closed".equals(doorState)) {
@@ -92,5 +69,5 @@ public class BarkRecognizerSteps {
 		}
 		return open;
 	}
-	
+
 }

@@ -4,10 +4,10 @@ public class BarkRecognizerSimulator {
 
 	public static void main(String[] args) {
 		DogDoor door = new DogDoor();
+		door.allowBark(new Bark("woof"));
 		BarkRecognizer recognizer = new BarkRecognizer(door);
-		recognizer.addDog("fido");
 		System.out.println("Fido barks to go outside...");
-		Bark bark = new Bark("fido");
+		Bark bark = new Bark("woof");
 		recognizer.recognize(bark);
 		System.out.println("\nFido has gone outside...");
 		System.out.println("\nFido is all done...");
