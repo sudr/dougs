@@ -1,4 +1,4 @@
-package info.sudr.hfooad.dougs;
+package info.sudr.dougs;
 
 import java.util.List;
 
@@ -13,13 +13,15 @@ import org.jbehave.core.steps.CandidateSteps;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.junit.Test;
 
-public class BarkCanOperateDoor extends JUnitStory {
+public class RemoteCanOperateDoor extends JUnitStory {
 
 	@Test
     public void run() throws Throwable {
         super.run();
     }
 
+	// Here we specify the configuration, starting from default
+	// MostUsefulConfiguration, and changing only what is needed
 	@Override
 	public Configuration configuration() {
 		return new MostUsefulConfiguration()
@@ -34,6 +36,6 @@ public class BarkCanOperateDoor extends JUnitStory {
 	@Override
 	public List<CandidateSteps> candidateSteps() {
 		// varargs, can have more that one steps classes
-		return new InstanceStepsFactory(configuration(), new BarkRecognizerSteps()).createCandidateSteps();
+		return new InstanceStepsFactory(configuration(), new RemoteSteps()).createCandidateSteps();
 	}
 }

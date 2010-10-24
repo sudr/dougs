@@ -1,4 +1,4 @@
-package info.sudr.hfooad.dougs;
+package info.sudr.dougs;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -45,7 +45,7 @@ public class BarkRecognizerSteps {
 	}
 
 	private void createDoor(String doorState, String barkSound) {
-		createDoor(doorState, Arrays.asList(new String[] {barkSound}));
+		createDoor(doorState, Arrays.asList(new String[] { barkSound }));
 	}
 
 	private void createDoor(String doorState, Collection<String> barkSounds) {

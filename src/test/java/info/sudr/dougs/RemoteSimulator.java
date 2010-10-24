@@ -1,4 +1,4 @@
-package info.sudr.hfooad.dougs;
+package info.sudr.dougs;
 
 public class RemoteSimulator {
 

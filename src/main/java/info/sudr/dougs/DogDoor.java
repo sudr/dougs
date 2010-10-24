@@ -1,4 +1,4 @@
-package info.sudr.hfooad.dougs;
+package info.sudr.dougs;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,11 +12,11 @@ public class DogDoor {
 	private boolean open;
 
 	private final Collection<Bark> allowedBarks = new ArrayList<Bark>();
-	
+
 	public DogDoor() {
 		open = false;
 	}
-	
+
 	public DogDoor(boolean open) {
 		this.open = open;
 	}
@@ -33,7 +33,7 @@ public class DogDoor {
 	public void open() {
 		System.out.println("SYSTEM: The dog door opens.");
 		open = true;
-		
+
 		final Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override

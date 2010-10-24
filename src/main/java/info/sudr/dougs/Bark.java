@@ -1,4 +1,4 @@
-package info.sudr.hfooad.dougs;
+package info.sudr.dougs;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -20,7 +20,7 @@ public class Bark {
 	public String toString() {
 		return new ToStringBuilder(sound).toString();
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

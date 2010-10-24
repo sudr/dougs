@@ -1,4 +1,4 @@
-package info.sudr.hfooad.dougs;
+package info.sudr.dougs;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -12,10 +12,10 @@ public class RemoteSteps {
 
 	private Remote remote;
 	private DogDoor door;
-	private boolean doorState; 
+	private boolean doorState;
 
 	@Given("a remote and an $doorState door")
-	@Aliases(values={"a remote and a $doorState door"})
+	@Aliases(values = { "a remote and a $doorState door" })
 	public void aRemote(String doorState) {
 		boolean open = false;
 		if ("closed".equals(doorState)) {
@@ -32,11 +32,11 @@ public class RemoteSteps {
 		remote.pressButton();
 		doorState = door.isOpen();
 	}
-	
+
 	@When("I press the button and wait $numberSeconds seconds")
 	public void iPressTheButtonAndWait(int numberSeconds) throws InterruptedException {
 		remote.pressButton();
-		Thread.sleep(numberSeconds*1000*2);
+		Thread.sleep(numberSeconds * 1000 * 2);
 		doorState = door.isOpen();
 	}
 
@@ -45,7 +45,7 @@ public class RemoteSteps {
 		boolean expectedDoorState = false;
 		assertThat(this.doorState, equalTo(expectedDoorState));
 	}
-	
+
 	@Then("the door is $doorState")
 	public void theDoorIs(String doorState) {
 		boolean expectedDoorState = false;
@@ -56,5 +56,5 @@ public class RemoteSteps {
 		}
 		assertThat(this.doorState, equalTo(expectedDoorState));
 	}
-	
+
 }

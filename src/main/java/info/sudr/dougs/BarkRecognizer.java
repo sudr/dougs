@@ -1,8 +1,7 @@
-package info.sudr.hfooad.dougs;
+package info.sudr.dougs;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.PredicateUtils;
-
 
 public class BarkRecognizer {
 
@@ -11,7 +10,7 @@ public class BarkRecognizer {
 	public BarkRecognizer(DogDoor door) {
 		this.door = door;
 	}
-	
+
 	public void recognize(Bark bark) {
 		System.out.println("BarkRecognizer: heard " + bark.getSound() + " bark.");
 		if (isBarkRecognized(bark)) {
